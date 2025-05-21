@@ -14,6 +14,7 @@ public partial class Simulator : Node
             var queue = new Queue<uint>();
             var visited = new HashSet<uint>();
             queue.Enqueue(originNodeId);
+            visited.Add(originNodeId);
             
             while (queue.Count > 0)
             {
@@ -21,11 +22,19 @@ public partial class Simulator : Node
                 {
                     if (character.Cortex.TryGetValue(nodeId, out var node))
                     {
-                        visited.Add(nodeId);
                         foreach (var kvp in node.Synapses)
                         {
-                            if (!visited.Contains(kvp.Key)) queue.Enqueue(kvp.Key);
+                            if (!visited.Contains(kvp.Key))
+                            {
+                                if (!queue.Contains(kvp.Key)) queue.Enqueue(kvp.Key);
+                                if (character.Cortex.TryGetValue(kvp.Key, out var linkedNode))
+                                {
+                                    if (node.Activation > node.Threshold) linkedNode.Activation += node.Activation * kvp.Value;
+                                }
+                            }
                         }
+                        
+                        foreach (var kvp in node.Synapses) visited.Add(kvp.Key);
                     }
                 }
             }
