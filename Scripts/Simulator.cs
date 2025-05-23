@@ -30,6 +30,7 @@ public partial class Simulator : Node
                                 if (character.Cortex.TryGetValue(kvp.Key, out var linkedNode))
                                 {
                                     linkedNode.Activation += node.Activation * kvp.Value * intensity;
+                                    node.Synapses[kvp.Key] *= node.Activation + linkedNode.Activation > 1.0f ? 1 : 1 - decay;
                                 }
                             }
                         }
