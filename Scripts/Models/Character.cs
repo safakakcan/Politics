@@ -6,6 +6,12 @@ public class Character
 {
     public uint Id { get; set; }
     public string Name { get; set; }
-    
-    public Dictionary<uint, Node> Cortex { get; set; } = new();
+
+    public Dictionary<uint, Node> Cortex { get; set; } = new()
+    {
+        { 1, new Concept(1, "", 0.6f, new()
+                {
+                    { 2, 0.4f }
+                }) },
+    };
 }

@@ -7,7 +7,7 @@ public partial class Simulator : Node
 {
     public Dictionary<uint, Character> Characters = new Dictionary<uint, Character>();
     
-    public void PropagateInCortex(uint characterId, uint originNodeId)
+    public void PropagateInCortex(uint characterId, uint originNodeId, float intensity = 1.0f, float decay = 0.1f)
     {
         if (Characters.TryGetValue(characterId, out var character))
         {
@@ -29,10 +29,12 @@ public partial class Simulator : Node
                                 if (!queue.Contains(kvp.Key)) queue.Enqueue(kvp.Key);
                                 if (character.Cortex.TryGetValue(kvp.Key, out var linkedNode))
                                 {
-                                    if (node.Activation > node.Threshold) linkedNode.Activation += node.Activation * kvp.Value;
+                                    linkedNode.Activation += node.Activation * kvp.Value * intensity;
                                 }
                             }
                         }
+
+                        intensity *= 1 - decay;
                         
                         foreach (var kvp in node.Synapses) visited.Add(kvp.Key);
                     }
