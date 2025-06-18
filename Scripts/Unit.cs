@@ -5,7 +5,7 @@ using Politics.Scripts.Models;
 public partial class Unit : Sprite2D
 {
 	public uint UnitId;
-	public int UnitType;
+	public UnitType UnitType;
 	public RangeValue Health;
 	public RangeValue Morale;
 	public RangeValue Energy;
@@ -13,7 +13,13 @@ public partial class Unit : Sprite2D
 	public RangeValue Supply;
 	public float Experience;
 	public float MovementSpeed;
-
+	public float Resistance;
+	public float Stealth;
+	public float Suppression;
+	public float FirePower;
+	public float Accuracy;
+	public VisionArea VisionArea;
+	
 	public override void _Ready()
 	{
 		

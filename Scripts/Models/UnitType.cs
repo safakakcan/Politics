@@ -1,6 +1,6 @@
 ﻿namespace Politics.Scripts.Models;
 
-public enum UnitType
+public enum UnitType : byte
 {
     Invalid = 0,
     Infantry = 1,
