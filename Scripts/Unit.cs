@@ -1,10 +1,9 @@
-using Godot;
-using System;
 using Politics.Scripts.Models;
 
-public partial class Unit : Sprite2D
+public class Unit
 {
 	public uint UnitId;
+	public uint ArmyId;
 	public UnitType UnitType;
 	public RangeValue Health;
 	public RangeValue Morale;
@@ -19,14 +18,4 @@ public partial class Unit : Sprite2D
 	public float FirePower;
 	public float Accuracy;
 	public VisionArea VisionArea;
-	
-	public override void _Ready()
-	{
-		
-	}
-
-	public override void _Process(double delta)
-	{
-		
-	}
 }
