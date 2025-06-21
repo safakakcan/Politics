@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Politics"
-run/main_scene="uid://6kk4bl2buex3"
+run/main_scene="uid://dvqr3rhld571q"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
 
